@@ -6,12 +6,9 @@ pipeline {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
         SWIFT_BRANCH = 'main'
         SWIFT_SCHEME = 'main'
-        SWIFT_VERSION = '5.7'
-        ITERATION = '01'
-        ARCHIVE_NAME = 'swiftlang-5.7-debian-11'
-        RELEASE = 'main-dev'
+        SWIFT_VERSION = 'DEVELOPMENT-SNAPSHOT'
         DOCKER_IMAGE = 'swiftarm/ci-build:debian_11'
-        CONTAINER = 'swift-5.7-dev-debian-11'
+        CONTAINER = 'swift-main-dev-debian-11'
         OS = 'debian'
         OS_VERSION = 'bulleye'
         ARCH = 'aarch64'
@@ -23,7 +20,7 @@ pipeline {
             echo 'Cleaning Workspace'
             cleanWs()
             script {
-               currentBuild.displayName = "swift-${SWIFT_VERSION}-${RELEASE}-${ITERATION}-${DATE}"
+               currentBuild.displayName = "swift-${SWIFT_VERSION}-${DATE}-a"
             }
             sh 'mkdir output'
          }
@@ -72,13 +69,13 @@ pipeline {
                ./swift/utils/build-script \
                --preset buildbot_linux,no_test \
                install_destdir=${WORK_DIR}/swift-install \
-               installable_package=${WORK_DIR}/output/${ARCHIVE_NAME}-${RELEASE}-${ARCH}-${ITERATION}-${DATE}.tar.gz'"
+               installable_package=${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz'"
             }
       }
       stage('Archive') {
          steps {
             echo 'Archive Build'
-            sh "docker cp ${CONTAINER}:${WORK_DIR}/output/${ARCHIVE_NAME}-${RELEASE}-${ARCH}-${ITERATION}-${DATE}.tar.gz output/"
+            sh "docker cp ${CONTAINER}:${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz output/"
             archiveArtifacts 'output/*.tar.gz'
          }
       }
