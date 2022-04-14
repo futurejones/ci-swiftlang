@@ -1,4 +1,4 @@
-// Jenkins Pipeline - swift-5.6-debian-11
+// Jenkins Pipeline - swift-main-debian-11
 pipeline {
    agent { label 'arm64' }
 
