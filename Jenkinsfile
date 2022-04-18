@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('Start Container') {
             steps {
+                sh "docker pull ${DOCKER_IMAGE}"
                 // remove container if exists
                 sh "docker rm -f ${CONTAINER} || true"
                 // start container detached and keep running
