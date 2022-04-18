@@ -1,2 +1,2 @@
-# ci-swiftlang
-Jenkins pipelines for the Swift-Arm build server.
+# hello-swift
+A simple test project.
