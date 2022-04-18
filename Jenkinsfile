@@ -2,7 +2,7 @@ pipeline {
     agent {label 'arm64'}
 
     environment {
-        DOCKER_IMAGE = 'swiftarm/swift:5.5.3-debian-bullseye'
+        DOCKER_IMAGE = 'swiftarm/swift:5.6.1-debian-bullseye'
         CONTAINER = 'helloswift'
         OS = 'Debian'
         OS_VERSION = 'bullseye'
