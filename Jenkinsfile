@@ -57,6 +57,7 @@ pipeline {
             sh "docker rm -f ${CONTAINER} || true"
             sh "docker volume rm ${CONTAINER} || true"
             sh "docker run \
+               --platform linux/arm64 \
                --cap-add=SYS_PTRACE \
                --security-opt seccomp=unconfined \
                --name ${CONTAINER} \
