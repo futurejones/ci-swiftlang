@@ -1,2 +1,4 @@
-# ci-swiftlang
-Jenkins pipelines for the Swift-Arm build server.
+# Ubuntu Jammy Arm64
+**release/5.7 branch**
+
+[![Build Status](https://ci.swiftlang.xyz/job/swift-5.7-ubuntu-jammy/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.7-ubuntu-jammy/)
