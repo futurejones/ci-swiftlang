@@ -6,7 +6,8 @@ pipeline {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
         SWIFT_BRANCH = 'release/5.6'
         SWIFT_SCHEME = 'release/5.6'
-        SWIFT_VERSION = '5.6-DEVELOPMENT-SNAPSHOT'
+        SWIFT_TAG = 'swift-5.6.1-RELEASE'
+        SWIFT_VERSION = '5.6.1'
         DOCKER_IMAGE = 'swiftarm/ci-build:arm32v7_debian_11'
         CONTAINER = 'swift-5.6-dev-debian-11-arm32v7'
         OS = 'debian'
@@ -34,7 +35,7 @@ pipeline {
       stage('Update Checkout') {
          steps {
             echo "scheme${SWIFT_SCHEME}: cloning supporting repos"
-            sh "./swift/utils/update-checkout --clone --scheme ${SWIFT_SCHEME} --skip-repository icu --skip-repository cmake"
+            sh "./swift/utils/update-checkout --clone --tag ${SWIFT_TAG} --skip-repository icu --skip-repository cmake"
          }
       }
       stage('Apply Patches') {
@@ -49,6 +50,8 @@ pipeline {
                echo "add swiftlang-min preset"
                sh 'wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/main/patches/swift-5.6/swiftlang-min.patch'
                sh 'git apply swiftlang-min.patch'
+               sh 'wget https://raw.githubusercontent.com/termux/termux-packages/master/packages/swift/swift-arm.patch'
+               sh 'patch -p2 < swift-arm.patch'
             }
          }
       }
@@ -77,13 +80,13 @@ pipeline {
                ./swift/utils/build-script \
                --preset buildbot_linux,swiftlang-min -j70 \
                install_destdir=${WORK_DIR}/swift-install \
-               installable_package=${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz'"
+               installable_package=${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-RELEASE-${ARCH}-${OS}-${OS_VERSION}.tar.gz'"
             }
       }
       stage('Archive') {
          steps {
             echo 'Archive Build'
-            sh "docker cp ${CONTAINER}:${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz output/"
+            sh "docker cp ${CONTAINER}:${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-RELEASE-${ARCH}-${OS}-${OS_VERSION}.tar.gz output/"
             archiveArtifacts 'output/*.tar.gz'
          }
       }
