@@ -45,6 +45,11 @@ pipeline {
                sh 'wget https://github.com/apple/swift-docc/pull/73.patch'
                sh 'git apply 73.patch'
             }
+            dir('swift') {
+               echo "add swiftlang-min preset"
+               sh 'wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/main/patches/swift-5.6/swiftlang-min.patch'
+               sh 'git apply swiftlang-min.patch'
+            }
          }
       }
       stage('Pull Docker Image') {
@@ -70,7 +75,7 @@ pipeline {
                /bin/bash -lc \
                'cp -r /source/* ${WORK_DIR}; \
                ./swift/utils/build-script \
-               --preset buildbot_linux,no_test -j70 \
+               --preset buildbot_linux,swiftlang-min -j70 \
                install_destdir=${WORK_DIR}/swift-install \
                installable_package=${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz'"
             }
