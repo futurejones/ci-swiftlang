@@ -34,7 +34,7 @@ pipeline {
       stage('Update Checkout') {
          steps {
             echo "scheme${SWIFT_SCHEME}: cloning supporting repos"
-            sh "./swift/utils/update-checkout --clone --scheme ${SWIFT_SCHEME}"
+            sh "./swift/utils/update-checkout --clone --scheme ${SWIFT_SCHEME} --skip-repository icu --skip-repository cmake"
          }
       }
       stage('Apply Patches') {
