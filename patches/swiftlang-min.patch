@@ -1,8 +1,8 @@
 diff --git a/utils/build-presets.ini b/utils/build-presets.ini
-index 51a14b897d3..2060dbeace0 100644
+index 64ba12b1e04..c318f8d26e2 100644
 --- a/utils/build-presets.ini
 +++ b/utils/build-presets.ini
-@@ -10,6 +10,46 @@
+@@ -10,6 +10,47 @@
  #
  #===------------------------------------------------------------------------===#
  
@@ -30,17 +30,18 @@ index 51a14b897d3..2060dbeace0 100644
 +build-swift-static-stdlib
 +build-swift-static-sdk-overlay
 +
-+foundation
-+libdispatch
 +skip-build-libicu
 +libcxx
 +swift-driver
 +
 +install-swift
-+install-foundation
-+install-libdispatch
 +install-libcxx
 +install-swift-driver
++
++host-target=linux-armv7
++llvm-targets-to-build=ARM
++stdlib-deployment-targets=linux-armv7
++
 +reconfigure
 +#===------------------------------------------------------------------------===#
 +# End
