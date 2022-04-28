@@ -54,6 +54,11 @@ pipeline {
                sh 'wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/debian/bullseye-5.6-armv7/patches/swift-arm.patch'
                sh 'patch -p2 < swift-arm.patch'
             }
+            dir('swift-corelibs-libdispatch') {
+               echo "patch fix for bencmark errors"
+               sh 'wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/debian/bullseye-5.6-armv7/patches/benchmark.diff'
+               sh 'git apply benchmark.diff'
+            }
          }
       }
       stage('Pull Docker Image') {
