@@ -48,9 +48,10 @@ pipeline {
             }
             dir('swift') {
                echo "add swiftlang-min preset"
-               sh 'wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/main/patches/swift-5.6/swiftlang-min.patch'
+               sh 'wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/main/patches/swiftlang-min.patch'
                sh 'git apply swiftlang-min.patch'
-               sh 'wget https://raw.githubusercontent.com/termux/termux-packages/master/packages/swift/swift-arm.patch'
+               echo "patch fix for AST errors"
+               sh 'wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/debian/bullseye-5.6-armv7/patches/swift-arm.patch'
                sh 'patch -p2 < swift-arm.patch'
             }
          }
