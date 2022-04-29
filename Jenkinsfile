@@ -2,10 +2,10 @@ pipeline {
     agent {label 'arm64'}
 
     environment {
-        DOCKER_IMAGE = 'swiftarm/swift:5.6.1-ubuntu-focal'
+        DOCKER_IMAGE = 'swiftarm/swift:5.6.1-ubuntu-jammy'
         CONTAINER = 'helloswift'
         OS = 'Ubuntu'
-        OS_VERSION = 'focal'
+        OS_VERSION = 'jammy'
     }
 
     stages {
