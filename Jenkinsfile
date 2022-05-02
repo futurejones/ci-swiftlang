@@ -19,9 +19,11 @@ pipeline {
       stage('Clean Workspace') {
          steps {
             echo 'Cleaning Workspace'
-            cleanWs()
+            sh label: '', script: '''#!/bin/bash
+            shopt -s extglob
+            sudo rm -rf !("patches")'''
             script {
-               currentBuild.displayName = "swift-${SWIFT_VERSION}-${DATE}-a"
+               currentBuild.displayName = "swift-${SWIFT_VERSION}-${DATE}"
             }
             sh 'mkdir output'
          }
@@ -55,7 +57,7 @@ pipeline {
                sh 'patch -p2 < swift-arm.patch'
             }
             dir('swift-corelibs-libdispatch') {
-               echo "patch fix for bencmark errors"
+               echo "patch fix for benchmark errors"
                sh 'wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/debian/bullseye-5.6-armv7/patches/benchmark.diff'
                sh 'git apply benchmark.diff'
             }
