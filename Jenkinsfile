@@ -50,16 +50,13 @@ pipeline {
             }
             dir('swift') {
                echo "add swiftlang-min preset"
-               sh 'wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/main/patches/swiftlang-min.patch'
-               sh 'git apply swiftlang-min.patch'
+               sh 'git apply $WORKSPACE/patches/swiftlang-min.patch'
                echo "patch fix for AST errors"
-               sh 'wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/debian/bullseye-5.6-armv7/patches/swift-arm.patch'
-               sh 'patch -p2 < swift-arm.patch'
+               sh 'patch -p2 < $WORKSPACE/patches/swift-arm.patch'
             }
             dir('swift-corelibs-libdispatch') {
                echo "patch fix for benchmark errors"
-               sh 'wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/debian/bullseye-5.6-armv7/patches/benchmark.diff'
-               sh 'git apply benchmark.diff'
+               sh 'git apply $WORKSPACE/patches/benchmark.diff'
             }
          }
       }
