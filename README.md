@@ -38,3 +38,5 @@ Armv7
 #### Swift swift-5.6.1-RELEASE
 * [Debian bullseye](https://github.com/futurejones/ci-swiftlang/tree/debian/bullseye-5.6-armv7)  
 [![Build Status](https://ci.swiftlang.xyz/job/swift-5.6.1-debian-bullseye-armv7/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.6.1-debian-bullseye-armv7/)
+
+[How to contribute to the Swift on Armv7 project.](swift-on-armv7/README.md)
