@@ -41,3 +41,19 @@ When the details are correct tap the `Create pull request` button.
 ![](images/pr/create-pr.png)
 
 
+#### Step 7 - Authorising PR Test Builds
+The first time you submit a PR it will need to be authorized.  
+There will be an automated response `You need to be authorised to automatically run #PR builds.`  
+
+![](images/pr/get-authorised.png)
+
+Once you have the `ok to test` the PR test build will start.
+
+![](images/pr/ok-to-test.png)
+
+You can check the progress of the build on the `Jenkins Dashboard`.
+
+![](images/pr/build-running-dashboard.png)
+
+
+
