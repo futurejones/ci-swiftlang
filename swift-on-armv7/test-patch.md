@@ -1,1 +1,1 @@
-# Submit a Patch for Testing
+# Submitting a Patch for Testing
