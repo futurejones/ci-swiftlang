@@ -1,6 +1,7 @@
 # Swift on Arm64
 
-The Swift on Arm64 project is currently running a number of builds to ensure Swift compatibility with various Linux Debian and Ubuntu distributions.
+The Swift on Arm64 project is currently running a number of builds to ensure Swift compatibility with various Linux Debian and Ubuntu distributions.  
+Nightly developer snapshots are available for download.
 
 Current builds running are:-
 

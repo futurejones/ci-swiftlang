@@ -1,7 +1,7 @@
 # Swift Arm Community CI Server
 
 ## The Hardware
-The server is the powerful Ampere® Altra® with an 80-core processor, 256GB of RAM and 1.9GB of fast NVMe storage. [More details...](https://solutions.amperecomputing.com/systems/equinix/bare-metal/bare-metal/c3-large-arm64)
+The server is the powerful Ampere® Altra® with an 80-core processor, 256GB of RAM and 1.9GB of fast NVMe storage. [More details...](https://solutions.amperecomputing.com/systems/equinix/bare-metal/bare-metal/c3-large-arm64)  
 The server is kindly provided by [Equinox](https://metal.equinix.com/) through the [Works On Arm](https://community.arm.com/p/works-on-arm) project.
 
 ## CI Software
