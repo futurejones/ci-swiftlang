@@ -69,8 +69,6 @@ pipeline {
       stage('Build Swift') {
          steps {
             echo 'Building toolchain'
-            // sh "docker rm -f ${CONTAINER} || true"
-            // sh "docker volume rm ${CONTAINER} || true"
             sh "docker run \
                --rm \
                --platform linux/arm/v7 \
