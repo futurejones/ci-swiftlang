@@ -9,7 +9,7 @@ pipeline {
         SWIFT_TAG = 'swift-5.6.1-RELEASE'
         SWIFT_VERSION = '5.6.1'
         DOCKER_IMAGE = 'swiftarm/ci-build:arm32v7_debian_11'
-        CONTAINER = 'swift-5.6-dev-debian-11-arm32v7'
+        CONTAINER = "swift-5.6-dev-debian-11-arm32v7-${BUILD_NUMBER}"
         OS = 'debian'
         OS_VERSION = 'bulleye'
         ARCH = 'armhf'
@@ -69,9 +69,10 @@ pipeline {
       stage('Build Swift') {
          steps {
             echo 'Building toolchain'
-            sh "docker rm -f ${CONTAINER} || true"
-            sh "docker volume rm ${CONTAINER} || true"
+            // sh "docker rm -f ${CONTAINER} || true"
+            // sh "docker volume rm ${CONTAINER} || true"
             sh "docker run \
+               --rm \
                --platform linux/arm/v7 \
                --cap-add=SYS_PTRACE \
                --security-opt seccomp=unconfined \
