@@ -96,8 +96,7 @@ pipeline {
       }
       stage('Cleanup Docker') {
           steps {
-              echo 'remove docker container'
-              sh "docker rm -f ${CONTAINER}"
+              echo 'remove docker volume'
               sh "docker volume rm ${CONTAINER}"
           }
       }
