@@ -94,11 +94,11 @@ pipeline {
             archiveArtifacts 'output/*.tar.gz'
          }
       }
-      stage('Cleanup Docker') {
-          steps {
-              echo 'remove docker volume'
-              sh "docker volume rm ${CONTAINER}"
-          }
-      }
+   }
+   post {
+        always {
+            echo 'remove docker volume'
+            sh "docker volume rm ${CONTAINER}"
+         }
    }
 }
