@@ -255,3 +255,19 @@ index 5523828730804..22cbe9a94e280 100644
    } else {
      auto *I = anchor.get<CaseLabelItem *>();
      return I->getStartLoc();
+diff --git a/swift/utils/build-script-impl b/swift/utils/build-script-impl
+index 074e6f6cad2..a2fde6c0497 100755
+--- a/swift/utils/build-script-impl
++++ b/swift/utils/build-script-impl
+@@ -2709,7 +2709,11 @@ for host in "${ALL_HOSTS[@]}"; do
+                 call "${CMAKE_BUILD[@]}" "${build_dir}" $(cmake_config_opt ${product})
+             fi
+ 
++            if [[ "${product}" == "swift" ]]; then
++            call "${CMAKE_BUILD[@]}" "${build_dir}" $(cmake_config_opt ${product}) -- "${BUILD_ARGS[@]}" -j1 ${build_targets[@]}
++            else
+             call "${CMAKE_BUILD[@]}" "${build_dir}" $(cmake_config_opt ${product}) -- "${BUILD_ARGS[@]}" ${build_targets[@]}
++            fi
+         fi
+ 
+         # When we are building LLVM copy over the compiler-rt
