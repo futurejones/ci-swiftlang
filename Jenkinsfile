@@ -6,8 +6,8 @@ pipeline {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
         SWIFT_BRANCH = 'release/5.6'
         SWIFT_SCHEME = 'release/5.6'
-        SWIFT_TAG = 'swift-5.6.1-RELEASE'
-        SWIFT_VERSION = '5.6.1'
+        SWIFT_TAG = 'swift-5.6.2-RELEASE'
+        SWIFT_VERSION = '5.6.2'
         DOCKER_IMAGE = 'swiftarm/ci-build:arm32v7_debian_11'
         CONTAINER = "swift-5.6-dev-debian-11-arm32v7-${BUILD_NUMBER}"
         OS = 'debian'
