@@ -4,11 +4,11 @@ pipeline {
 
    environment {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
-        SWIFT_BRANCH = 'release/5.7'
-        SWIFT_SCHEME = 'release/5.7'
+        SWIFT_BRANCH = 'release/5.7.0'
+        SWIFT_SCHEME = 'release/5.7.0'
         SWIFT_VERSION = '5.7-DEVELOPMENT-SNAPSHOT'
         DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_jammy'
-        CONTAINER = 'swift-5.7-dev-ubuntu-jammy'
+        CONTAINER = 'swift-5.7.0-dev-ubuntu-jammy'
         OS = 'ubuntu'
         OS_VERSION = 'jammy'
         ARCH = 'aarch64'
