@@ -29,6 +29,10 @@ pipeline {
          steps {
             echo "Clone swift: ${SWIFT_BRANCH}"
             sh "git clone https://github.com/apple/swift.git"
+            dir('swift') {
+               sh "wget https://github.com/apple/swift/pull/60482.patch"
+               sh "git apply 60482.patch"
+            }
             }
       }
       stage('Update Checkout') {
