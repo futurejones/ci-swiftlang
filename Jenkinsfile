@@ -41,8 +41,7 @@ pipeline {
          steps {
             echo 'Apply Patches'
             dir('swift') {
-               sh "wget https://github.com/apple/swift/pull/60482.patch"
-               sh "git apply 60482.patch"
+               echo "no patches needed"
             }
          }
       }
