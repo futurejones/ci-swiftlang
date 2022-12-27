@@ -1,14 +1,14 @@
-// Jenkins Pipeline - swift-5.7-ubuntu-focal
+// Jenkins Pipeline - swift-5.8-ubuntu-focal
 pipeline {
    agent { label 'arm64' }
 
    environment {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
-        SWIFT_BRANCH = 'release/5.7'
-        SWIFT_SCHEME = 'release/5.7'
-        SWIFT_VERSION = '5.7-DEVELOPMENT-SNAPSHOT'
+        SWIFT_BRANCH = 'release/5.8'
+        SWIFT_SCHEME = 'release/5.8'
+        SWIFT_VERSION = '5.8-DEVELOPMENT-SNAPSHOT'
         DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_focal'
-        CONTAINER = 'swift-5.7-dev-ubuntu-focal'
+        CONTAINER = 'swift-5.8-dev-ubuntu-focal'
         OS = 'ubuntu'
         OS_VERSION = 'focal'
         ARCH = 'aarch64'
