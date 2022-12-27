@@ -1,14 +1,14 @@
-// Jenkins Pipeline - swift-5.7-debian-11
+// Jenkins Pipeline - swift-5.8-debian-11
 pipeline {
    agent { label 'arm64' }
 
    environment {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
-        SWIFT_BRANCH = 'release/5.7'
-        SWIFT_SCHEME = 'release/5.7'
-        SWIFT_VERSION = '5.7-DEVELOPMENT-SNAPSHOT'
+        SWIFT_BRANCH = 'release/5.8'
+        SWIFT_SCHEME = 'release/5.8'
+        SWIFT_VERSION = '5.8-DEVELOPMENT-SNAPSHOT'
         DOCKER_IMAGE = 'swiftarm/ci-build:debian_11'
-        CONTAINER = 'swift-5.7-dev-debian-11'
+        CONTAINER = 'swift-5.8-dev-debian-11'
         OS = 'debian'
         OS_VERSION = 'bulleye'
         ARCH = 'aarch64'
