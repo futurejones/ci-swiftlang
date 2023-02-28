@@ -1,17 +1,17 @@
-// Jenkins Pipeline - swift-5.8-ubuntu-jammy
+// Jenkins Pipeline - swift-5.8-ubuntu-jammy-riscv64
 pipeline {
-   agent { label 'arm64' }
+   agent { label 'riscv64' }
 
    environment {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
         SWIFT_BRANCH = 'release/5.8'
         SWIFT_SCHEME = 'release/5.8'
         SWIFT_VERSION = '5.8-DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_jammy'
-        CONTAINER = 'swift-5.8-dev-ubuntu-jammy'
+        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_jammy_riscv64'
+        CONTAINER = 'swift-5.8-dev-ubuntu-jammy-riscv64'
         OS = 'ubuntu'
         OS_VERSION = 'jammy'
-        ARCH = 'aarch64'
+        ARCH = 'riscv64'
         WORK_DIR = '/home/build-user'
    }
    stages {
@@ -57,7 +57,7 @@ pipeline {
             sh "docker rm -f ${CONTAINER} || true"
             sh "docker volume rm ${CONTAINER} || true"
             sh "docker run \
-               --platform linux/arm64 \
+               --platform linux/riscv64 \
                --cap-add=SYS_PTRACE \
                --security-opt seccomp=unconfined \
                --name ${CONTAINER} \
