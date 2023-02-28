@@ -41,7 +41,9 @@ pipeline {
          steps {
             echo 'Apply Patches'
             dir('swift') {
-               echo "no patches needed"
+               echo "add riscv64 platform support"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-riscv64-to-targets.patch"
+               sh "git apply add-riscv64-to-targets.patch"
             }
          }
       }
