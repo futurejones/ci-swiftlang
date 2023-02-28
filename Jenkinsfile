@@ -44,6 +44,11 @@ pipeline {
                echo "add riscv64 platform support"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-riscv64-to-targets.patch"
                sh "git apply add-riscv64-to-targets.patch"
+               echo "add riscv64 as llvm target to build"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-RISCV-llvm-target-to-build.patch"
+               sh "git add-RISCV-llvm-target-to-build.patch"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-RISCV-llvm-target-to-build-presets.patch"
+               sh "git add-RISCV-llvm-target-to-build-presets.patch"
             }
          }
       }
