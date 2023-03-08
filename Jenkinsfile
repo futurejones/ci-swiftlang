@@ -49,6 +49,8 @@ pipeline {
                sh "git apply add-RISCV-llvm-target-to-build.patch"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-RISCV-llvm-target-to-build-presets.patch"
                sh "git apply add-RISCV-llvm-target-to-build-presets.patch"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/skip-early-swift-driver-syntax.patch"
+               sh "git apply skip-early-swift-driver-syntax.patch"
             }
             dir('llvm-project') {
                echo "apply llvm-project patches"
