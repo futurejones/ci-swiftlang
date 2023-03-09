@@ -64,6 +64,8 @@ pipeline {
                echo "apply llvm-project patches"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/llvm-calling-conv-rscv.patch"
                sh "git apply llvm-calling-conv-rscv.patch"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/riscv64-toolchain-driver.patch"
+               sh "git apply riscv64-toolchain-driver.patch"
             }
          }
       }
