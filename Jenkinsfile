@@ -7,7 +7,7 @@ pipeline {
         SWIFT_BRANCH = 'release/5.8'
         SWIFT_SCHEME = 'release/5.8'
         SWIFT_VERSION = '5.8-DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_jammy_riscv64_20230304'
+        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_jammy_riscv64_20230309'
         CONTAINER = 'swift-5.8-dev-ubuntu-jammy-riscv64'
         OS = 'ubuntu'
         OS_VERSION = 'jammy'
