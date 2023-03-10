@@ -53,10 +53,12 @@ pipeline {
                sh "git apply llvm-targets-to-build.patch"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/skip-early-swift-driver-syntax.patch"
                sh "git apply skip-early-swift-driver-syntax.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/mno-relax-lld.patch"
-               sh "git apply mno-relax-lld.patch"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/mno-relax.patch"
+               sh "git apply mno-relax.patch"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/use-ld-linker.patch"
                sh "git apply use-ld-linker.patch"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/dswift-use-linker-ld.patch"
+               sh "git apply dswift-use-linker-ld.patch"
             }
             dir('llvm-project') {
                echo "apply llvm-project patches"
