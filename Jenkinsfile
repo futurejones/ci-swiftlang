@@ -44,21 +44,16 @@ pipeline {
                echo "apply swift patches"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-riscv64-to-targets.patch"
                sh "git apply add-riscv64-to-targets.patch"
-               echo "add riscv64 as llvm target to build"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-RISCV-llvm-target-to-build.patch"
                sh "git apply add-RISCV-llvm-target-to-build.patch"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-RISCV-llvm-target-to-build-presets.patch"
                sh "git apply add-RISCV-llvm-target-to-build-presets.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/llvm-targets-to-build.patch"
-               sh "git apply llvm-targets-to-build.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/skip-early-swift-driver-syntax.patch"
-               sh "git apply skip-early-swift-driver-syntax.patch"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/mno-relax.patch"
                sh "git apply mno-relax.patch"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/use-ld-linker.patch"
                sh "git apply use-ld-linker.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/dswift-use-linker-ld.patch"
-               sh "git apply dswift-use-linker-ld.patch"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/buildbot-linux-riscv64.patch"
+               sh "git apply buildbot-linux-riscv64.patch"
             }
             dir('llvm-project') {
                echo "apply llvm-project patches"
@@ -90,7 +85,7 @@ pipeline {
                /bin/bash -lc \
                'cp -r /source/* ${WORK_DIR}; \
                ./swift/utils/build-script \
-               --preset buildbot_linux,no_test \
+               --preset buildbot_linux_riscv64,no_test \
                install_destdir=${WORK_DIR}/swift-install \
                installable_package=${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz'"
             }
