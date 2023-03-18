@@ -1,4 +1,4 @@
-// Jenkins Pipeline - swift-5.8-ubuntu-jammy-riscv64
+// Jenkins Pipeline - swift-5.8-debian-sid-riscv64
 pipeline {
    agent { label 'riscv64' }
 
@@ -7,10 +7,10 @@ pipeline {
         SWIFT_BRANCH = 'release/5.8'
         SWIFT_SCHEME = 'release/5.8'
         SWIFT_VERSION = '5.8-DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_jammy_riscv64_20230309'
-        CONTAINER = 'swift-5.8-dev-ubuntu-jammy-riscv64'
-        OS = 'ubuntu'
-        OS_VERSION = 'jammy'
+        DOCKER_IMAGE = 'swiftarm/ci-build:debian_sid_riscv64'
+        CONTAINER = 'swift-5.8-dev-debian-sid-riscv64'
+        OS = 'debian'
+        OS_VERSION = 'sid'
         ARCH = 'riscv64'
         WORK_DIR = '/home/build-user'
    }
