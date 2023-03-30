@@ -1,14 +1,14 @@
-// Jenkins Pipeline - swift-5.7-ubuntu-jammy
+// Jenkins Pipeline - swift-5.9-ubuntu-jammy
 pipeline {
    agent { label 'arm64' }
 
    environment {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
-        SWIFT_BRANCH = 'release/5.7'
-        SWIFT_SCHEME = 'release/5.7'
-        SWIFT_VERSION = '5.7-DEVELOPMENT-SNAPSHOT'
+        SWIFT_BRANCH = 'release/5.9'
+        SWIFT_SCHEME = 'release/5.9'
+        SWIFT_VERSION = '5.9-DEVELOPMENT-SNAPSHOT'
         DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_jammy'
-        CONTAINER = 'swift-5.7-dev-ubuntu-jammy'
+        CONTAINER = 'swift-5.9-dev-ubuntu-jammy'
         OS = 'ubuntu'
         OS_VERSION = 'jammy'
         ARCH = 'aarch64'
