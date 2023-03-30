@@ -1,4 +1,4 @@
-// Jenkins Pipeline - swift-5.9-ubuntu-jammy
+// Jenkins Pipeline - swift-5.9-ubuntu-lunar
 pipeline {
    agent { label 'arm64' }
 
@@ -7,10 +7,10 @@ pipeline {
         SWIFT_BRANCH = 'release/5.9'
         SWIFT_SCHEME = 'release/5.9'
         SWIFT_VERSION = '5.9-DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_jammy'
-        CONTAINER = 'swift-5.9-dev-ubuntu-jammy'
+        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_lunar'
+        CONTAINER = 'swift-5.9-dev-ubuntu-lunar'
         OS = 'ubuntu'
-        OS_VERSION = 'jammy'
+        OS_VERSION = 'lunar'
         ARCH = 'aarch64'
         WORK_DIR = '/home/build-user'
    }
