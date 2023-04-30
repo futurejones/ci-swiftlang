@@ -1,4 +1,4 @@
 # Ubuntu Jammy Arm64
-**release/5.7 branch**
+**release/5.8 branch**
 
-[![Build Status](https://ci.swiftlang.xyz/job/swift-5.7-ubuntu-jammy/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.7-ubuntu-jammy/)
+[![Build Status](https://ci.swiftlang.xyz/job/swift-5.8-ubuntu-jammy/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.8-ubuntu-jammy/)
