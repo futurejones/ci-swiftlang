@@ -42,6 +42,10 @@ pipeline {
             echo 'Apply Patches'
             dir('swift') {
                echo "no swift patches"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-riscv64-to-host-targets.patch"
+               sh "git apply add-riscv64-to-host-targets.patch"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-RISCV-llvm-target-to-build.patch"
+               sh "git apply add-RISCV-llvm-target-to-build.patch"
             }
             dir('llvm-project') {
                echo "no llvm-project patches"
