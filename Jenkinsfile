@@ -1,16 +1,16 @@
-// Jenkins Pipeline - swift-5.8-ubuntu-jammy-riscv64
+// Jenkins Pipeline - swift-5.9-ubuntu-lunar-riscv64
 pipeline {
    agent { label 'riscv64' }
 
    environment {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
-        SWIFT_BRANCH = 'release/5.8'
-        SWIFT_SCHEME = 'release/5.8'
-        SWIFT_VERSION = '5.8-DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_jammy_riscv64_20230309'
-        CONTAINER = 'swift-5.8-dev-ubuntu-jammy-riscv64'
+        SWIFT_BRANCH = 'release/5.9'
+        SWIFT_SCHEME = 'release/5.9'
+        SWIFT_VERSION = '5.9-DEVELOPMENT-SNAPSHOT'
+        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_lunar_riscv64_cmake_3_19_6'
+        CONTAINER = 'swift-5.9-dev-ubuntu-lunar-riscv64'
         OS = 'ubuntu'
-        OS_VERSION = 'jammy'
+        OS_VERSION = 'lunar'
         ARCH = 'riscv64'
         WORK_DIR = '/home/build-user'
    }
@@ -41,24 +41,10 @@ pipeline {
          steps {
             echo 'Apply Patches'
             dir('swift') {
-               echo "apply swift patches"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-riscv64-to-targets.patch"
-               sh "git apply add-riscv64-to-targets.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-RISCV-llvm-target-to-build.patch"
-               sh "git apply add-RISCV-llvm-target-to-build.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-RISCV-llvm-target-to-build-presets.patch"
-               sh "git apply add-RISCV-llvm-target-to-build-presets.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/mno-relax.patch"
-               sh "git apply mno-relax.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/use-ld-linker.patch"
-               sh "git apply use-ld-linker.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/buildbot-linux-riscv64.patch"
-               sh "git apply buildbot-linux-riscv64.patch"
+               echo "no swift patches"
             }
             dir('llvm-project') {
-               echo "apply llvm-project patches"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/llvm-calling-conv-rscv.patch"
-               sh "git apply llvm-calling-conv-rscv.patch"
+               echo "no llvm-project patches"
             }
          }
       }
