@@ -1,4 +1,4 @@
-// Jenkins Pipeline - swift-5.8-debian-11
+// Jenkins Pipeline - swift-5.8-debian-12
 pipeline {
    agent { label 'arm64' }
 
@@ -7,10 +7,10 @@ pipeline {
         SWIFT_BRANCH = 'release/5.8'
         SWIFT_SCHEME = 'release/5.8'
         SWIFT_VERSION = '5.8-DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:debian_11'
-        CONTAINER = 'swift-5.8-dev-debian-11'
+        DOCKER_IMAGE = 'swiftarm/ci-build:debian_12'
+        CONTAINER = 'swift-5.8-dev-debian-12'
         OS = 'debian'
-        OS_VERSION = 'bulleye'
+        OS_VERSION = 'bookworm'
         ARCH = 'aarch64'
         WORK_DIR = '/home/build-user'
    }
