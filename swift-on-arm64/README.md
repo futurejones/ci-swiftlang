@@ -8,6 +8,9 @@ Current builds running are:-
 Arm64 / Aarch64
 ---
 #### Swift main branch
+* [Debian bookworm](https://github.com/futurejones/ci-swiftlang/tree/debian/bookworm-main)  
+[![Build Status](https://ci.swiftlang.xyz/job/swift-main-debian-bookworm/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-debian-bookworm/)
+
 * [Debian bullseye](https://github.com/futurejones/ci-swiftlang/tree/debian/bullseye-main)  
 [![Build Status](https://ci.swiftlang.xyz/job/swift-main-debian-bullseye/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-debian-bullseye/)
 
@@ -18,6 +21,9 @@ Arm64 / Aarch64
 [![Build Status](https://ci.swiftlang.xyz/job/swift-main-ubuntu-jammy/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-ubuntu-jammy/)
 
 #### Swift release/5.9 branch
+* [Debian bookworm](https://github.com/futurejones/ci-swiftlang/tree/debian/bookworm-5.9)  
+[![Build Status](https://ci.swiftlang.xyz/job/swift-5.9-debian-bookworm/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.9-debian-bookworm/)
+
 * [Debian bullseye](https://github.com/futurejones/ci-swiftlang/tree/debian/bullseye-5.9)  
 [![Build Status](https://ci.swiftlang.xyz/job/swift-5.9-debian-bullseye/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.9-debian-bullseye/)
 
@@ -28,6 +34,9 @@ Arm64 / Aarch64
 [![Build Status](https://ci.swiftlang.xyz/job/swift-5.9-ubuntu-jammy/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.9-ubuntu-jammy/)
 
 #### Swift release/5.8 branch
+* [Debian bookworm](https://github.com/futurejones/ci-swiftlang/tree/debian/bookworm-5.8)  
+[![Build Status](https://ci.swiftlang.xyz/job/swift-5.8-debian-bookworm/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.8-debian-bookworm/)
+
 * [Debian bullseye](https://github.com/futurejones/ci-swiftlang/tree/debian/bullseye-5.8)  
 [![Build Status](https://ci.swiftlang.xyz/job/swift-5.8-debian-bullseye/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.8-debian-bullseye/)
 
