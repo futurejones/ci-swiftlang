@@ -1,4 +1,4 @@
-# Debian Bullseye Arm64
+# Debian Bookworm Arm64
 **main branch**  
 
-[![Build Status](https://ci.swiftlang.xyz/job/swift-main-debian-bullseye/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-debian-bullseye/)
+[![Build Status](https://ci.swiftlang.xyz/job/swift-main-debian-bookworm/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-debian-bookworm/)
