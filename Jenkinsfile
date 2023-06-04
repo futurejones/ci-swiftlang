@@ -1,18 +1,15 @@
 // Jenkins Pipeline - swift-5.9-ubuntu-lunar-riscv64
 pipeline {
-   agent { label 'riscv64' }
+   agent { label 'visionfive2' }
 
    environment {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
         SWIFT_BRANCH = 'release/5.9'
         SWIFT_SCHEME = 'release/5.9'
         SWIFT_VERSION = '5.9-DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_lunar_riscv64_cmake_3_19_6'
-        CONTAINER = 'swift-5.9-dev-ubuntu-lunar-riscv64'
         OS = 'ubuntu'
         OS_VERSION = 'lunar'
         ARCH = 'riscv64'
-        WORK_DIR = '/home/build-user'
    }
    stages {
       stage('Clean Workspace') {
@@ -22,7 +19,6 @@ pipeline {
             script {
                currentBuild.displayName = "swift-${SWIFT_VERSION}-${DATE}-a"
             }
-            sh 'mkdir output'
          }
       }
       stage('Checkout Swift') {
@@ -52,47 +48,20 @@ pipeline {
             }
          }
       }
-      stage('Pull Docker Image') {
-         steps {
-            echo 'Getting Docker Image'
-            sh "docker pull ${DOCKER_IMAGE}"
-         }
-      }
       stage('Build Swift') {
          steps {
             echo 'Building toolchain'
-            sh "docker rm -f ${CONTAINER} || true"
-            sh "docker volume rm ${CONTAINER} || true"
-            sh "docker run \
-               --platform linux/riscv64 \
-               --cap-add=SYS_PTRACE \
-               --security-opt seccomp=unconfined \
-               --name ${CONTAINER} \
-               -w ${WORK_DIR} \
-               -v ${WORKSPACE}:/source \
-               -v ${CONTAINER}:${WORK_DIR} \
-               ${DOCKER_IMAGE} \
-               /bin/bash -lc \
-               'cp -r /source/* ${WORK_DIR}; \
-               ./swift/utils/build-script \
+            sh "./swift/utils/build-script \
                --preset buildbot_linux,no_test \
-               install_destdir=${WORK_DIR}/swift-install \
-               installable_package=${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz'"
+               install_destdir=${WORKSPACE}/swift-install \
+               installable_package=${WORKSPACE}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz -n'"
             }
       }
       stage('Archive') {
          steps {
             echo 'Archive Build'
-            sh "docker cp ${CONTAINER}:${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz output/"
             archiveArtifacts 'output/*.tar.gz'
          }
-      }
-      stage('Cleanup Docker') {
-          steps {
-              echo 'remove docker container'
-              sh "docker rm -f ${CONTAINER}"
-              sh "docker volume rm ${CONTAINER}"
-          }
       }
    }
 }
