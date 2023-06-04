@@ -54,7 +54,7 @@ pipeline {
             sh "./swift/utils/build-script \
                --preset buildbot_linux,no_test \
                install_destdir=${WORKSPACE}/swift-install \
-               installable_package=${WORKSPACE}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz -n'"
+               installable_package=${WORKSPACE}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz -n"
             }
       }
       stage('Archive') {
