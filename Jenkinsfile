@@ -49,11 +49,11 @@ pipeline {
                // sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/mno-relax.patch"
                // sh "git apply mno-relax.patch"
             }
-            dir('llvm-project') {
-               echo "apply llvm-project patches"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/llvm-calling-conv-rscv.patch"
-               sh "git apply llvm-calling-conv-rscv.patch"
-            }
+            // dir('llvm-project') {
+            //    echo "apply llvm-project patches"
+            //    sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/llvm-project/5.8/llvm-calling-conv-rscv.patch"
+            //    sh "git apply llvm-calling-conv-rscv.patch"
+            // }
          }
       }
       stage('Pull Docker Image') {
