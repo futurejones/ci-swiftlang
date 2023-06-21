@@ -1,4 +1,4 @@
-// Jenkins Pipeline - swift-5.8-debian-sid-riscv64
+// Jenkins Pipeline - swift-5.8-debian-unstable-riscv64
 pipeline {
    agent { label 'riscv64' }
 
@@ -7,10 +7,10 @@ pipeline {
         SWIFT_BRANCH = 'release/5.8'
         SWIFT_SCHEME = 'release/5.8'
         SWIFT_VERSION = '5.8-DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:debian_sid_riscv64'
-        CONTAINER = 'swift-5.8-dev-debian-sid-riscv64'
+        DOCKER_IMAGE = 'swiftarm/ci-build:debian_unstable_riscv64'
+        CONTAINER = 'swift-5.8-dev-debian-unstable-riscv64'
         OS = 'debian'
-        OS_VERSION = 'sid'
+        OS_VERSION = 'unstable'
         ARCH = 'riscv64'
         WORK_DIR = '/home/build-user'
    }
