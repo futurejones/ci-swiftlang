@@ -79,7 +79,7 @@ pipeline {
                /bin/bash -lc \
                'cp -r /source/* ${WORK_DIR}; \
                ./swift/utils/build-script \
-               --preset buildbot_linux_riscv64,no_test \
+               --preset buildbot_linux,no_test \
                install_destdir=${WORK_DIR}/swift-install \
                installable_package=${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz'"
             }
