@@ -42,18 +42,12 @@ pipeline {
             echo 'Apply Patches'
             dir('swift') {
                echo "apply swift patches"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-riscv64-to-targets.patch"
-               sh "git apply add-riscv64-to-targets.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-RISCV-llvm-target-to-build.patch"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/add-riscv64-as-supported-architecture.patch"
+               sh "git apply add-riscv64-as-supported-architecture.patch"
+               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/add-RISCV-llvm-target-to-build.patch"
                sh "git apply add-RISCV-llvm-target-to-build.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/add-RISCV-llvm-target-to-build-presets.patch"
-               sh "git apply add-RISCV-llvm-target-to-build-presets.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/mno-relax.patch"
-               sh "git apply mno-relax.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/use-ld-linker.patch"
-               sh "git apply use-ld-linker.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/buildbot-linux-riscv64.patch"
-               sh "git apply buildbot-linux-riscv64.patch"
+               // sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/mno-relax.patch"
+               // sh "git apply mno-relax.patch"
             }
             dir('llvm-project') {
                echo "apply llvm-project patches"
