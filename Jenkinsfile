@@ -1,102 +1,115 @@
-// Jenkins Pipeline - swift-5.8-debian-unstable-riscv64
+// Jenkins Pipeline - swift-5.8-debian-unstable-riscv64-docker-cached
 pipeline {
-   agent { label 'riscv64' }
-
-   environment {
+    agent { label 'swiftaltra' }
+    
+    environment {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
         SWIFT_BRANCH = 'release/5.8'
         SWIFT_SCHEME = 'release/5.8'
         SWIFT_VERSION = '5.8-DEVELOPMENT-SNAPSHOT'
         DOCKER_IMAGE = 'swiftarm/ci-build:debian_unstable_riscv64'
-        CONTAINER = 'swift-5.8-dev-debian-unstable-riscv64'
+        CONTAINER = 'riscv64-unstable'
         OS = 'debian'
         OS_VERSION = 'unstable'
         ARCH = 'riscv64'
         WORK_DIR = '/home/build-user'
+        BUILD_CMD = './swift/utils/build-script'
+        PRESET = '--preset=buildbot_linux_riscv64,no_test'
+        DESTDIR = 'install_destdir=/home/build-user/install'
+        PACKAGE = 'installable_package=/home/build-user/install/swift-5.8-riscv64.tar.gz'
    }
-   stages {
-      stage('Clean Workspace') {
-         steps {
-            echo 'Cleaning Workspace'
-            cleanWs()
-            script {
-               currentBuild.displayName = "swift-${SWIFT_VERSION}-${DATE}-a"
+
+    stages {
+        stage('Start Container') {
+            steps {
+                echo 'starting container'
+                sh 'docker start ${CONTAINER}'
             }
-            sh 'mkdir output'
-         }
-      }
-      stage('Checkout Swift') {
-         steps {
-            echo "Clone swift: ${SWIFT_BRANCH}"
-            sh "git clone https://github.com/apple/swift.git"
+        }
+        stage('List Source') {
+            steps {
+                echo 'running command'
+                sh 'docker exec -w ${WORK_DIR}/swift ${CONTAINER} ls'
             }
-      }
-      stage('Update Checkout') {
-         steps {
-            echo "scheme${SWIFT_SCHEME}: cloning supporting repos"
-            sh "./swift/utils/update-checkout --clone --scheme ${SWIFT_SCHEME}"
-         }
-      }
-      stage('Apply Patches') {
-         steps {
-            echo 'Apply Patches'
-            dir('swift') {
-               echo "apply swift patches"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/add-riscv64-as-supported-architecture.patch"
-               sh "git apply add-riscv64-as-supported-architecture.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/add-RISCV-llvm-target-to-build.patch"
-               sh "git apply add-RISCV-llvm-target-to-build.patch"
-               // sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/mno-relax.patch"
-               // sh "git apply mno-relax.patch"
+        }
+        stage('Patch Swift') {
+            steps {
+                // Patch #1
+                echo 'SWIFT PATCH #1'
+                script {
+                    env.URL = 'https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/add-riscv64-as-supported-architecture.patch'
+                    env.PATCH = 'add-riscv64-as-supported-architecture.patch'
+                }
+                echo 'download patch'
+                sh "docker exec -w ${WORK_DIR}/swift ${CONTAINER} /bin/bash -c '[ -e '${env.PATCH}' ] && echo file exists || wget ${env.URL}'"
+                echo 'apply patch'
+                sh "docker exec -w ${WORK_DIR}/swift ${CONTAINER} /bin/bash -c 'git apply --check -q ${env.PATCH} && git apply ${env.PATCH} || echo patch already applied'"
+                //
+                // Patch #2
+                echo 'SWIFT PATCH #2'
+                script {
+                    env.URL = 'https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/add-RISCV-llvm-target-to-build.patch'
+                    env.PATCH = 'add-RISCV-llvm-target-to-build.patch'
+                }
+                echo 'download patch'
+                sh "docker exec -w ${WORK_DIR}/swift ${CONTAINER} /bin/bash -c '[ -e '${env.PATCH}' ] && echo file exists || wget ${env.URL}'"
+                echo 'apply patch'
+                sh "docker exec -w ${WORK_DIR}/swift ${CONTAINER} /bin/bash -c 'git apply --check -q ${env.PATCH} && git apply ${env.PATCH} || echo patch already applied'"
+                //
+                // Patch #3
+                echo 'SWIFT PATCH #3'
+                script {
+                    env.URL = 'https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/use-ld-linker.patch'
+                    env.PATCH = 'use-ld-linker.patch'
+                }
+                echo 'download patch'
+                sh "docker exec -w ${WORK_DIR}/swift ${CONTAINER} /bin/bash -c '[ -e '${env.PATCH}' ] && echo file exists || wget ${env.URL}'"
+                echo 'apply patch'
+                sh "docker exec -w ${WORK_DIR}/swift ${CONTAINER} /bin/bash -c 'git apply --check -q ${env.PATCH} && git apply ${env.PATCH} || echo patch already applied'"
+                //
+                // Patch #4
+                echo 'SWIFT PATCH #4'
+                script {
+                    env.URL = 'https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/mno-relax.patch'
+                    env.PATCH = 'mno-relax.patch'
+                }
+                echo 'download patch'
+                sh "docker exec -w ${WORK_DIR}/swift ${CONTAINER} /bin/bash -c '[ -e '${env.PATCH}' ] && echo file exists || wget ${env.URL}'"
+                echo 'apply patch'
+                sh "docker exec -w ${WORK_DIR}/swift ${CONTAINER} /bin/bash -c 'git apply --check -q ${env.PATCH} && git apply ${env.PATCH} || echo patch already applied'"
+                //
+                // Patch #5
+                echo 'SWIFT PATCH #5'
+                script {
+                    env.URL = 'https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/buildbot-linux-riscv64.patch'
+                    env.PATCH = 'buildbot-linux-riscv64.patch'
+                }
+                echo 'download patch'
+                sh "docker exec -w ${WORK_DIR}/swift ${CONTAINER} /bin/bash -c '[ -e '${env.PATCH}' ] && echo file exists || wget ${env.URL}'"
+                echo 'apply patch'
+                sh "docker exec -w ${WORK_DIR}/swift ${CONTAINER} /bin/bash -c 'git apply --check -q ${env.PATCH} && git apply ${env.PATCH} || echo patch already applied'"
             }
-            // dir('llvm-project') {
-            //    echo "apply llvm-project patches"
-            //    sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/llvm-project/5.8/llvm-calling-conv-rscv.patch"
-            //    sh "git apply llvm-calling-conv-rscv.patch"
-            // }
-         }
-      }
-      stage('Pull Docker Image') {
-         steps {
-            echo 'Getting Docker Image'
-            sh "docker pull ${DOCKER_IMAGE}"
-         }
-      }
-      stage('Build Swift') {
-         steps {
-            echo 'Building toolchain'
-            sh "docker rm -f ${CONTAINER} || true"
-            sh "docker volume rm ${CONTAINER} || true"
-            sh "docker run \
-               --platform linux/riscv64 \
-               --cap-add=SYS_PTRACE \
-               --security-opt seccomp=unconfined \
-               --name ${CONTAINER} \
-               -w ${WORK_DIR} \
-               -v ${WORKSPACE}:/source \
-               -v ${CONTAINER}:${WORK_DIR} \
-               ${DOCKER_IMAGE} \
-               /bin/bash -lc \
-               'cp -r /source/* ${WORK_DIR}; \
-               ./swift/utils/build-script \
-               --preset buildbot_linux,no_test \
-               install_destdir=${WORK_DIR}/swift-install \
-               installable_package=${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz'"
+        }
+        stage('Patch LLVM-Project') {
+            steps {
+                // Patch #1
+                echo 'LLVM PROJECT PATCH #1'
+                script {
+                    env.URL = 'https://github.com/swift-riscv/swift-riscv64/raw/main/patches/llvm-project/5.8/llvm-calling-conv-rscv.patch'
+                    env.PATCH = 'llvm-calling-conv-rscv.patch'
+                }
+                echo 'download patch'
+                sh "docker exec -w ${WORK_DIR}/llvm-project ${CONTAINER} /bin/bash -c '[ -e '${env.PATCH}' ] && echo file exists || wget ${env.URL}'"
+                echo 'apply patch'
+                sh "docker exec -w ${WORK_DIR}/llvm-project ${CONTAINER} /bin/bash -c 'git apply --check -q ${env.PATCH} && git apply ${env.PATCH} || echo patch already applied'"
+                //
             }
-      }
-      stage('Archive') {
-         steps {
-            echo 'Archive Build'
-            sh "docker cp ${CONTAINER}:${WORK_DIR}/output/swiftlang-${SWIFT_VERSION}-${DATE}-a-${ARCH}-${OS}-${OS_VERSION}.tar.gz output/"
-            archiveArtifacts 'output/*.tar.gz'
-         }
-      }
-      stage('Cleanup Docker') {
-          steps {
-              echo 'remove docker container'
-              sh "docker rm -f ${CONTAINER}"
-              sh "docker volume rm ${CONTAINER}"
-          }
-      }
-   }
+        }
+        stage('Build Swift') {
+            steps {
+                echo 'building swift'
+                sh 'docker exec ${CONTAINER} ${BUILD_CMD} ${PRESET} ${DESTDIR} ${PACKAGE}'
+            }
+        }
+    }
 }
