@@ -7,7 +7,7 @@ pipeline {
         SWIFT_BRANCH = 'main'
         SWIFT_SCHEME = 'main'
         SWIFT_VERSION = 'DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_focal'
+        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_focal_swift'
         CONTAINER = 'swift-main-dev-ubuntu-focal'
         OS = 'ubuntu'
         OS_VERSION = 'focal'
