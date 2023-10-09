@@ -7,7 +7,7 @@ pipeline {
         SWIFT_BRANCH = 'main'
         SWIFT_SCHEME = 'main'
         SWIFT_VERSION = 'DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:debian_12'
+        DOCKER_IMAGE = 'swiftarm/ci-build:debian_bookworm_swift'
         CONTAINER = 'swift-main-dev-debian-12'
         OS = 'debian'
         OS_VERSION = 'bookworm'
@@ -67,6 +67,7 @@ pipeline {
                ${DOCKER_IMAGE} \
                /bin/bash -lc \
                'cp -r /source/* ${WORK_DIR}; \
+               PATH='/opt/swift/5.8.1/usr/bin:${PATH}'; \
                ./swift/utils/build-script \
                --preset buildbot_linux,no_test \
                install_destdir=${WORK_DIR}/swift-install \
