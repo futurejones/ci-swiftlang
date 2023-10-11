@@ -1,14 +1,14 @@
-// Jenkins Pipeline - swift-5.9-ubuntu-lunar
+// Jenkins Pipeline - swift-5.10-ubuntu-lunar
 pipeline {
    agent { label 'arm64' }
 
    environment {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
-        SWIFT_BRANCH = 'release/5.9'
-        SWIFT_SCHEME = 'release/5.9'
-        SWIFT_VERSION = '5.9-DEVELOPMENT-SNAPSHOT'
+        SWIFT_BRANCH = 'release/5.10'
+        SWIFT_SCHEME = 'release/5.10'
+        SWIFT_VERSION = '5.10-DEVELOPMENT-SNAPSHOT'
         DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_lunar'
-        CONTAINER = 'swift-5.9-dev-ubuntu-lunar'
+        CONTAINER = 'swift-5.10-dev-ubuntu-lunar'
         OS = 'ubuntu'
         OS_VERSION = 'lunar'
         ARCH = 'aarch64'
