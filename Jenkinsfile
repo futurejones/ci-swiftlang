@@ -7,7 +7,7 @@ pipeline {
         SWIFT_BRANCH = 'release/5.10'
         SWIFT_SCHEME = 'release/5.10'
         SWIFT_VERSION = '5.10-DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_lunar'
+        DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_lunar_swift'
         CONTAINER = 'swift-5.10-dev-ubuntu-lunar'
         OS = 'ubuntu'
         OS_VERSION = 'lunar'
