@@ -14,11 +14,15 @@ Arm64 / Aarch64
 * [Debian bullseye](https://github.com/futurejones/ci-swiftlang/tree/debian/bullseye-main)  
 [![Build Status](https://ci.swiftlang.xyz/job/swift-main-debian-bullseye/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-debian-bullseye/)
 
-* [Ubuntu focal](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/focal-main)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-main-ubuntu-focal/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-ubuntu-focal/)
-
 * [Ubuntu jammy](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/jammy-main)  
 [![Build Status](https://ci.swiftlang.xyz/job/swift-main-ubuntu-jammy/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-ubuntu-jammy/)
+
+* [Ubuntu lunar](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/lunar-main)  
+[![Build Status](https://ci.swiftlang.xyz/job/swift-main-ubuntu-lunar/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-ubuntu-lunar/)
+
+#### Swift release/5.10 branch
+* [Ubuntu lunar](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/lunar-5.10)  
+[![Build Status](https://ci.swiftlang.xyz/job/swift-5.10-ubuntu-lunar/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.10-ubuntu-lunar/)
 
 #### Swift release/5.9 branch
 * [Debian bookworm](https://github.com/futurejones/ci-swiftlang/tree/debian/bookworm-5.9)  
@@ -27,21 +31,5 @@ Arm64 / Aarch64
 * [Debian bullseye](https://github.com/futurejones/ci-swiftlang/tree/debian/bullseye-5.9)  
 [![Build Status](https://ci.swiftlang.xyz/job/swift-5.9-debian-bullseye/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.9-debian-bullseye/)
 
-* [Ubuntu focal](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/focal-5.9)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-5.9-ubuntu-focal/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.9-ubuntu-focal/)
-
 * [Ubuntu jammy](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/jammy-5.9)  
 [![Build Status](https://ci.swiftlang.xyz/job/swift-5.9-ubuntu-jammy/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.9-ubuntu-jammy/)
-
-#### Swift release/5.8 branch
-* [Debian bookworm](https://github.com/futurejones/ci-swiftlang/tree/debian/bookworm-5.8)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-5.8-debian-bookworm/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.8-debian-bookworm/)
-
-* [Debian bullseye](https://github.com/futurejones/ci-swiftlang/tree/debian/bullseye-5.8)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-5.8-debian-bullseye/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.8-debian-bullseye/)
-
-* [Ubuntu focal](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/focal-5.8)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-5.8-ubuntu-focal/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.8-ubuntu-focal/)
-
-* [Ubuntu jammy](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/jammy-5.8)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-5.8-ubuntu-jammy/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.8-ubuntu-jammy/)
