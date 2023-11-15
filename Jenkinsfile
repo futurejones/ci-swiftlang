@@ -1,17 +1,17 @@
-// Jenkins Pipeline - swift-5.8-debian-unstable-riscv64
+// Jenkins Pipeline - swift-5.8-debian-unstable-arm64
 pipeline {
-   agent { label 'riscv64' }
+   agent { label 'swiftaltra' }
 
    environment {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
         SWIFT_BRANCH = 'release/5.8'
         SWIFT_SCHEME = 'release/5.8'
         SWIFT_VERSION = '5.8-DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:debian_unstable_riscv64'
-        CONTAINER = 'swift-5.8-dev-debian-unstable-riscv64'
+        DOCKER_IMAGE = 'swiftarm/ci-build:debian_sid_arm64_5.8'
+        CONTAINER = 'swift-5.8-dev-debian-unstable-arm64'
         OS = 'debian'
         OS_VERSION = 'unstable'
-        ARCH = 'riscv64'
+        ARCH = 'arm64'
         WORK_DIR = '/home/build-user'
    }
    stages {
@@ -42,18 +42,7 @@ pipeline {
             echo 'Apply Patches'
             dir('swift') {
                echo "apply swift patches"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/add-riscv64-as-supported-architecture.patch"
-               sh "git apply add-riscv64-as-supported-architecture.patch"
-               sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/add-RISCV-llvm-target-to-build.patch"
-               sh "git apply add-RISCV-llvm-target-to-build.patch"
-               // sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/mno-relax.patch"
-               // sh "git apply mno-relax.patch"
             }
-            // dir('llvm-project') {
-            //    echo "apply llvm-project patches"
-            //    sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/llvm-project/5.8/llvm-calling-conv-rscv.patch"
-            //    sh "git apply llvm-calling-conv-rscv.patch"
-            // }
          }
       }
       stage('Pull Docker Image') {
@@ -68,7 +57,6 @@ pipeline {
             sh "docker rm -f ${CONTAINER} || true"
             sh "docker volume rm ${CONTAINER} || true"
             sh "docker run \
-               --platform linux/riscv64 \
                --cap-add=SYS_PTRACE \
                --security-opt seccomp=unconfined \
                --name ${CONTAINER} \
