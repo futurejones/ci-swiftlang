@@ -34,14 +34,16 @@ pipeline {
       stage('Update Checkout') {
          steps {
             echo "scheme${SWIFT_SCHEME}: cloning supporting repos"
-            sh "./swift/utils/update-checkout --clone --scheme ${SWIFT_SCHEME}"
+            sh "./swift/utils/update-checkout --clone --scheme ${SWIFT_SCHEME} --skip-repository icu"
          }
       }
       stage('Apply Patches') {
          steps {
             echo 'Apply Patches'
             dir('swift') {
-               echo "no swift patches"
+               echo "skip build libicu"
+               sh "wget https://raw.githubusercontent.com/swift-riscv/swift-riscv64/main/patches/swift/5.8/skip-build-libicu.patch"
+               sh "git apply skip-build-libicu.patch"
             }
             dir('llvm-project') {
                echo "apply llvm patches"
