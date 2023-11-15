@@ -41,7 +41,12 @@ pipeline {
          steps {
             echo 'Apply Patches'
             dir('swift') {
-               echo "apply swift patches"
+               echo "no swift patches"
+            }
+            dir('llvm-project') {
+               echo "apply llvm patches"
+               sh "wget https://raw.githubusercontent.com/swift-riscv/swift-riscv64/main/patches/llvm-project/5.8/llvm-stdint-5.8-fix.patch"
+               sh "git apply llvm-stdint-5.8-fix.patch"
             }
          }
       }
