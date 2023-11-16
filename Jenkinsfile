@@ -7,7 +7,7 @@ pipeline {
         SWIFT_BRANCH = 'release/5.8'
         SWIFT_SCHEME = 'release/5.8'
         SWIFT_VERSION = '5.8-DEVELOPMENT-SNAPSHOT'
-        DOCKER_IMAGE = 'swiftarm/ci-build:debian_unstable_riscv64'
+        DOCKER_IMAGE = 'swiftarm/ci-build:debian_sid_riscv64_5.8'
         CONTAINER = 'swift-5.8-dev-debian-unstable-riscv64'
         OS = 'debian'
         OS_VERSION = 'unstable'
@@ -34,26 +34,30 @@ pipeline {
       stage('Update Checkout') {
          steps {
             echo "scheme${SWIFT_SCHEME}: cloning supporting repos"
-            sh "./swift/utils/update-checkout --clone --scheme ${SWIFT_SCHEME}"
+            sh "./swift/utils/update-checkout --clone --scheme ${SWIFT_SCHEME} --skip-repository icu"
          }
       }
       stage('Apply Patches') {
          steps {
             echo 'Apply Patches'
             dir('swift') {
-               echo "apply swift patches"
+               echo "apply riscv64 patches"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/add-riscv64-as-supported-architecture.patch"
                sh "git apply add-riscv64-as-supported-architecture.patch"
                sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/swift/5.8/add-RISCV-llvm-target-to-build.patch"
                sh "git apply add-RISCV-llvm-target-to-build.patch"
-               // sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/release-5.8-branch/mno-relax.patch"
-               // sh "git apply mno-relax.patch"
+               echo "apply skip build libicu patch"
+               sh "wget https://raw.githubusercontent.com/swift-riscv/swift-riscv64/main/patches/swift/5.8/skip-build-libicu.patch"
+               sh "git apply skip-build-libicu.patch"
+               echo "apply targets to build patch"
+               sh "https://raw.githubusercontent.com/swift-riscv/swift-riscv64/main/patches/swift/5.8/llvm-targets-to-build.patch"
+               sh "git apply llvm-targets-to-build.patch"
             }
-            // dir('llvm-project') {
-            //    echo "apply llvm-project patches"
-            //    sh "wget https://github.com/swift-riscv/swift-riscv64/raw/main/patches/llvm-project/5.8/llvm-calling-conv-rscv.patch"
-            //    sh "git apply llvm-calling-conv-rscv.patch"
-            // }
+            dir('llvm-project') {
+               echo "apply llvm stdint fix patch"
+               sh "wget https://raw.githubusercontent.com/swift-riscv/swift-riscv64/main/patches/llvm-project/5.8/llvm-stdint-5.8-fix.patch"
+               sh "git apply llvm-stdint-5.8-fix.patch"
+            }
          }
       }
       stage('Pull Docker Image') {
