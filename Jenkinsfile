@@ -50,7 +50,7 @@ pipeline {
                sh "wget https://raw.githubusercontent.com/swift-riscv/swift-riscv64/main/patches/swift/5.8/skip-build-libicu.patch"
                sh "git apply skip-build-libicu.patch"
                echo "apply targets to build patch"
-               sh "https://raw.githubusercontent.com/swift-riscv/swift-riscv64/main/patches/swift/5.8/llvm-targets-to-build.patch"
+               sh "wget https://raw.githubusercontent.com/swift-riscv/swift-riscv64/main/patches/swift/5.8/llvm-targets-to-build.patch"
                sh "git apply llvm-targets-to-build.patch"
             }
             dir('llvm-project') {
