@@ -1,17 +1,17 @@
-// Jenkins Pipeline - swift-6.0-ubuntu-24.04
+// Jenkins Pipeline - swift-main-ubuntu-24.04
 pipeline {
    agent { label 'arm64' }
 
    environment {
         def DATE = sh(script: "echo `date +%Y-%m-%d`", returnStdout: true).trim()
-        SWIFT_BRANCH = 'release/6.0'
-        SWIFT_TAG = 'swift-6.0-dev'
-        SWIFT_VERSION = '6.0'
+        SWIFT_BRANCH = 'main'
+        SWIFT_TAG = 'swift-main-dev'
+        SWIFT_VERSION = 'main'
         ITERATION = '01'
-        ARCHIVE_NAME = 'swiftlang-6.0-ubuntu-24.04'
+        ARCHIVE_NAME = 'swiftlang-main-ubuntu-24.04'
         RELEASE = 'dev'
         DOCKER_IMAGE = 'swiftarm/ci-build:ubuntu_noble_swift'
-        CONTAINER = 'swift-6.0-ubuntu-noble'
+        CONTAINER = 'swift-main-ubuntu-noble'
         OS = 'ubuntu'
         OS_VERSION = 'noble'
         WORK_DIR = '/home/build-user'
