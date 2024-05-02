@@ -14,22 +14,10 @@ Arm64 / Aarch64
 * [Debian bullseye](https://github.com/futurejones/ci-swiftlang/tree/debian/bullseye-main)  
 [![Build Status](https://ci.swiftlang.xyz/job/swift-main-debian-bullseye/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-debian-bullseye/)
 
-* [Ubuntu jammy](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/jammy-main)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-main-ubuntu-jammy/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-ubuntu-jammy/)
+* [Ubuntu noble](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/noble-main)  
+[![Build Status](https://ci.swiftlang.xyz/job/swift-main-ubuntu-noble/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-ubuntu-noble/)
 
-* [Ubuntu lunar](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/lunar-main)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-main-ubuntu-lunar/badge/icon)](https://ci.swiftlang.xyz/job/swift-main-ubuntu-lunar/)
+#### Swift release/6.0 branch
+* [Ubuntu noble](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/noble-6.0)  
+[![Build Status](https://ci.swiftlang.xyz/job/swift-6.0-ubuntu-noble/badge/icon)](https://ci.swiftlang.xyz/job/swift-6.0-ubuntu-noble/)
 
-#### Swift release/5.10 branch
-* [Ubuntu lunar](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/lunar-5.10)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-5.10-ubuntu-lunar/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.10-ubuntu-lunar/)
-
-#### Swift release/5.9 branch
-* [Debian bookworm](https://github.com/futurejones/ci-swiftlang/tree/debian/bookworm-5.9)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-5.9-debian-bookworm/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.9-debian-bookworm/)
-
-* [Debian bullseye](https://github.com/futurejones/ci-swiftlang/tree/debian/bullseye-5.9)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-5.9-debian-bullseye/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.9-debian-bullseye/)
-
-* [Ubuntu jammy](https://github.com/futurejones/ci-swiftlang/tree/ubuntu/jammy-5.9)  
-[![Build Status](https://ci.swiftlang.xyz/job/swift-5.9-ubuntu-jammy/badge/icon)](https://ci.swiftlang.xyz/job/swift-5.9-ubuntu-jammy/)
