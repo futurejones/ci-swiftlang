@@ -45,7 +45,11 @@ pipeline {
       }
       stage('Apply Patches') {
          steps {
-            echo 'no patches to apply'
+            echo 'patch for python no distutils'
+            dir('llvm-project'){
+                sh "wget https://raw.githubusercontent.com/futurejones/ci-swiftlang/main/patches/ubuntu-24.04/llvm-no-distutils.patch"
+                sh "git apply llvm-no-distutils.patch"
+            }
          }
       }
       stage('Pull Docker Image') {
